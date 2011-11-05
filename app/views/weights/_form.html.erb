@@ -1,0 +1,45 @@
+<%= form_for(@weight) do |f| %>
+  <% if @weight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+
+      <ul>
+      <% @weight.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :week %><br />
+    <%= f.select :week, [1,2,3,4,5,6],:include_blank => false %></td>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.number_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :player_id %><br />
+    <%= f.collection_select :player_id, Player.find(:all, :group =>"name"), :id, :name, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :week_loss %><br />
+    <%= f.number_field :week_loss %>
+  </div>
+  <div class="field">
+    <%= f.label :total_loss %><br />
+    <%= f.number_field :total_loss %>
+  </div>
+  <div class="field">
+    <%= f.label :week_percent %><br />
+    <%= f.number_field :week_percent %>
+  </div>
+  <div class="field">
+    <%= f.label :total_percent %><br />
+    <%= f.number_field :total_percent %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
