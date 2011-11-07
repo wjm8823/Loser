@@ -1,8 +1,7 @@
 <h1>Listing weights</h1>
-
 <table>
   <tr>
-    <th>Week</th>
+    <th>Week# [start date]</th>
     <th>Weight</th>
     <th>Player</th>
     <th>Week loss</th>
@@ -10,22 +9,18 @@
     <th>Week percent</th>
     <th>Total percent</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
-
 <% @weights.each do |weight| %>
   <tr>
-    <td><%= weight.week %></td>
+    <td><%= weight.week %>&nbsp;&nbsp;&nbsp;[<%= $a[weight.week-1] %>]</td>
     <td><%= weight.weight %></td>
-    <td><%= weight.player_id %></td>
+    <td><%= Player.find_by_id(weight.player_id).name %></td>
     <td><%= weight.week_loss %></td>
     <td><%= weight.total_loss %></td>
     <td><%= weight.week_percent %></td>
     <td><%= weight.total_percent %></td>
-    <td><%= link_to 'Show', weight %></td>
-    <td><%= link_to 'Edit', edit_weight_path(weight) %></td>
-    <td><%= link_to 'Destroy', weight, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', weight %> | 
+    <%= link_to 'Destroy', weight, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

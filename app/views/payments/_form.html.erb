@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :player_id %><br />
-    <%= f.number_field :player_id %>
+    <%= f.collection_select :player_id, Player.find(:all, :group =>"name"), :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.number_field :amount %>
+    <%= f.text_field :amount %>
   </div>
   <div class="actions">
     <%= f.submit %>

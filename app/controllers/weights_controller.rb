@@ -1,16 +1,11 @@
 class WeightsController < ApplicationController
   def index
-    @weights = Weight.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @weights }
-    end
+    @weights = Weight.order('week')
   end
 
   def show
     @weight = Weight.find(params[:id])
-    @player = Player.find_by_id(@weight.player_id).name
+    @player = Player.find_by_id(@weight.player_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @weight }

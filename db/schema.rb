@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20111103121236) do
   end
 
   create_table "weights", :force => true do |t|
-    t.string   "week",          :limit => 12
+    t.date     "date"
     t.integer  "weight"
     t.integer  "player_id"
     t.integer  "week_loss"

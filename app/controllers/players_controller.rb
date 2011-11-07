@@ -1,13 +1,6 @@
 class PlayersController < ApplicationController
-  # GET /players
-  # GET /players.json
   def index
-    @players = Player.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @players }
-    end
+    @players = Player.order('name')
   end
 
   def show
