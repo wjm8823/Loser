@@ -1,5 +1,5 @@
 class Weight < ActiveRecord::Base
-  belongs_to :players
+  belongs_to :player
   before_destroy :check_week 
   before_save :add_loss
 
@@ -8,7 +8,6 @@ class Weight < ActiveRecord::Base
   validates :week, :presence => true 
   validates_uniqueness_of :week,:scope => [:player_id]
 
-  CONTEST_WEEKS = 1
   private
   def check_week
     self.class.delete_all "week > #{week} and player_id = #{player_id}"

@@ -1,9 +1,18 @@
-<h1>Listing players</h1>
+<h1>Players</h1>
 
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">First</a></li>
+<li><a href="#tabs-2">Second</a></li>
+<li><a href="#tabs-3">Third</a></li>
+</ul>
+<div id="tabs-1">
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -11,12 +20,18 @@
 <% @players.each do |player| %>
   <tr>
     <td><%= player.name %></td>
-    <td><%= link_to 'Show', player %></td>
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
     <td><%= link_to 'Destroy', player, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
+
+</div>
+<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+
+<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+
+</div>
 
 <br />
 

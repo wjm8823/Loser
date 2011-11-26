@@ -1,11 +1,11 @@
 class WeightsController < ApplicationController
+
   def index
     @weights = Weight.order('week')
   end
 
   def show
     @weight = Weight.find(params[:id])
-    @player = Player.find_by_id(@weight.player_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @weight }
@@ -14,7 +14,8 @@ class WeightsController < ApplicationController
 
   def new
     @weight = Weight.new
-
+    @weight.player_id = params[:player_id]
+    @weight.week = Player.find_by_id(params[:player_id]).weights.maximum(:week).to_i + 1
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @weight }
@@ -29,7 +30,7 @@ class WeightsController < ApplicationController
     @weight = Weight.new(params[:weight])
     respond_to do |format|
       if @weight.save 
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
+        format.html { redirect_to player_path(@weight.player.id), notice: 'Weight was successfully created.' }
         format.json { render json: @weight, status: :created, location: @weight }
       else
         format.html { render action: "new" }

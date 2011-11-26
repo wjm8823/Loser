@@ -16,8 +16,12 @@
 <tr><td colspan=2>Weights</td></tr>
 	<tr><th>Week</th><th>Weight</th><th>Week Lost</th><th>Week %</th><th>Total Lost</th><th>Total %</th></tr>
 <% @weights.each do |weight| %>
-   <tr><td><%= weight.week %></td><td><%= weight.weight %></td><td><%= weight.week_loss %></td><td><%= number_to_percentage(weight.week_percent,:precision => 0) %></td><td><%= weight.total_loss %></td><td><%=  number_to_percentage(weight.total_percent,:precision => 0) %></td></tr>
+   <tr><td><%= weight.week %></td><td><%= weight.weight %></td>
+<td><%= weight.week_loss %></td>
+<td><%= number_to_percentage(weight.week_percent,:precision => 0) %></td>
+<td><%= weight.total_loss %></td>
+<td><%=  number_to_percentage(weight.total_percent,:precision => 0) %></td></tr>
 <% end %>
 </table><br>
 <%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Back', players_path %> | <%= link_to 'Add Weight', new_weight_path %>
+<%= link_to 'Back', players_path %> | <%= link_to 'Add Weight', new_weight_path(:player_id => @player.id) %>
