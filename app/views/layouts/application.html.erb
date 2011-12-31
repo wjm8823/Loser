@@ -2,19 +2,38 @@
 <html>
 <head>
   <title>Loser</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-<script type="text/javascript">
-$(function(){
-	$('#tabs').tabs();
- });
-</script>
 </head>
 <body>
+<center>
 
-<%= link_to 'Weights', weights_path %> | <%= link_to 'Players', players_path %> | <%= link_to 'Payments', payments_path %>
+<% if current_user && current_user.name == 'admin' %>
+<%= link_to 'Weights', weights_path, :class => "menu" %> | <%= link_to 'Players', players_path, :class => "menu" %> | <%= link_to 'Payments', payments_path, :class => "menu" %> | <%= link_to 'New Player', new_player_path, :class => "menu" %>
+<% end %>
+
 <%= yield %>
 
+<% if current_user %>
+  <br>Logged in as <%= current_user.name %>  [<%= link_to 'logout', logout_path %>]
+<% else %>
+  <% if params[:controller] == 'sessions' %>
+    <%= link_to 'Main Menu', players_path %>
+  <% else %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+<% end %>
+
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <%= content_tag :script do %>
+      $("#flash_<%= name %>").hide();
+      $("#flash_<%= name %>").slideDown(3000);
+      $("#flash_<%= name %>").slideUp(3000);
+    <% end %>
+<% end %>
+
+</center>
 </body>
 </html>

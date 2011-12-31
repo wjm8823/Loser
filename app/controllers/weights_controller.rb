@@ -14,8 +14,11 @@ class WeightsController < ApplicationController
 
   def new
     @weight = Weight.new
-    @weight.player_id = params[:player_id]
-    @weight.week = Player.find_by_id(params[:player_id]).weights.maximum(:week).to_i + 1
+    unless params[:player_id].nil?
+      @weight.player_id = params[:player_id]
+      t = Player.find_by_id(params[:player_id]).weights.maximum(:week)
+      t == nil ? @weight.week = 0 : @weight.week = t+1 
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @weight }

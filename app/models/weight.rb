@@ -14,8 +14,8 @@ class Weight < ActiveRecord::Base
   end	
  
   def add_loss
-    if self.week > 1
-	@first_week = Weight.find_by_player_id_and_week(self.player_id,1)
+    if self.week > 0
+	@first_week = Weight.find_by_player_id_and_week(self.player_id,0)
 	@last_week = Weight.find_by_player_id_and_week(self.player_id,(self.week-1))
         self.week_loss = @last_week.weight - self.weight
 	self.week_percent = (self.week_loss.to_f / @last_week.weight.to_f)*100

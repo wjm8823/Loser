@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111125203409) do
-
-  create_table "authentications", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111225222554) do
 
   create_table "payments", :force => true do |t|
     t.integer  "player_id"
@@ -30,22 +22,11 @@ ActiveRecord::Schema.define(:version => 20111125203409) do
 
   create_table "players", :force => true do |t|
     t.string   "name"
+    t.string   "email",           :limit => 32
+    t.string   "password_digest", :limit => 64
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "users", :force => true do |t|
-    t.string   "username",                     :null => false
-    t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_me_token"
-    t.datetime "remember_me_token_expires_at"
-  end
-
-  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
   create_table "weights", :force => true do |t|
     t.integer  "week",          :limit => 1

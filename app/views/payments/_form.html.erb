@@ -1,3 +1,4 @@
+<% if current_user && current_user.name == 'admin' %>
 <%= form_for(@payment) do |f| %>
   <% if @payment.errors.any? %>
     <div id="error_explanation">
@@ -22,4 +23,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+<% else %>
+You are not authorized to view this page
 <% end %>

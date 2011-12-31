@@ -1,38 +1,44 @@
 <h1>Players</h1>
-
-<!-- Tabs -->
-<h2 class="demoHeaders">Tabs</h2>
-
-<div id="tabs">
-<ul>
-<li><a href="#tabs-1">First</a></li>
-<li><a href="#tabs-2">Second</a></li>
-<li><a href="#tabs-3">Third</a></li>
-</ul>
-<div id="tabs-1">
 <table>
   <tr>
     <th>Name</th>
+    <th>Week 1 </th>
+    <th>Week 2</th>
+    <th>Week 3</th>
+    <th>Week 4</th>
+    <th>Week 5</th>
+    <th>Week 6</th>
+    <th>Total</th>
+<% if current_user && current_user.name == 'admin' %>
     <th></th>
-    <th></th>
+ <% end %>
   </tr>
 
 <% @players.each do |player| %>
   <tr>
-    <td><%= player.name %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+    <td>
+	<% if current_user && current_user.name == player.name %>
+		<%= link_to player.name, player %>
+	<% else %>
+		<%=  player.name %>
+	<% end %></td>
+    <% @total = 0 %>
+    <% 6.times do |i| %>
+      <td>
+      <% p = i.to_i + 1 %>
+      <% if !player.weights[p.to_i].nil? && player.weights[p.to_i][:week]==p.to_i %>
+        <%= player.weights[p.to_i].week_percent %>%
+        <% @total = player.weights[p.to_i].total_percent %>
+      <% end %>
+      </td>
+    <% end %>
+       <td><font color=red><%= @total %>%</font></td>
+   <% if current_user && current_user.name == 'admin' %>
+	<td>
+	<%= link_to 'Edit', edit_player_path(player) %> - 
+    <%= link_to 'Destroy', player, confirm: 'Are you sure?', method: :delete %></td>
+   <% end %></tr>
 <% end %>
 </table>
 
-</div>
-<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-
-<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
-
-</div>
-
 <br />
-
-<%= link_to 'New Player', new_player_path %>

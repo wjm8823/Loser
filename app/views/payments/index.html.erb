@@ -1,5 +1,5 @@
 <h1>Payments</h1>
-
+<% if current_user && current_user.name == 'admin' %>
 <table>
   <tr>
     <th>Date</th>
@@ -23,3 +23,6 @@
 <br />
 
 <%= link_to 'New Payment', new_payment_path %>
+<% else %>
+You are not authorize to use this page
+<% end %>
