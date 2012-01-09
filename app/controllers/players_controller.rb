@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def index
     @players = Player.find_all_by_display("1")
+    @prize = Payment.sum(:amount).to_f
   end
 
   def show

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20111225222554) do
     t.string   "name"
     t.string   "email",           :limit => 32
     t.string   "password_digest", :limit => 64
+    t.boolean  "display",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

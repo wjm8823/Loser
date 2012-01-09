@@ -1,12 +1,12 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Week 1 <br><font size="1">13 - 20 Jan</font></th>
-    <th>Week 2</th>
-    <th>Week 3</th>
-    <th>Week 4</th>
-    <th>Week 5</th>
-    <th>Week 6</th>
+    <th>Week 1 <br><font size="1"><%= $week1 %></font></th>
+    <th>Week 2 <br><font size="1"><%= $week2 %></font></th>
+    <th>Week 3 <br><font size="1"><%= $week3 %></font></th>
+    <th>Week 4 <br><font size="1"><%= $week4 %></font></th>
+    <th>Week 5 <br><font size="1"><%= $week5 %></font></th>
+    <th>Week 6 <br><font size="1"><%= $week6 %></font></th>
     <th>Total</th>
 <% if current_user && current_user.name == 'admin' %>
     <th></th>
@@ -39,5 +39,6 @@
    <% end %></tr>
 <% end %>
 </table>
-
-<br />
+Total collected = <%= number_to_currency(@prize) %><br>
+Weekly Prize = <%= number_to_currency(((@prize/2)/6)) %><br>
+Grand Prize = <font style="background-color: yellow;"><%= number_to_currency((@prize/2)) %></font>
