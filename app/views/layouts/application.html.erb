@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Loser</title>
+  <title>Biggest Loser</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,8 +13,10 @@
 <%= link_to 'Weights', weights_path, :class => "menu" %> | <%= link_to 'Players', players_path, :class => "menu" %> | <%= link_to 'Payments', payments_path, :class => "menu" %> | <%= link_to 'New Player', new_player_path, :class => "menu" %>
 <% end %>
 
-<%= yield %>
+<center><%= image_tag("loser.gif", :size => "124x64") %></center>
 
+<%= yield %>
+<br>
 <% if current_user %>
   <br>Logged in as <%= current_user.name %>  [<%= link_to 'logout', logout_path %>]
 <% else %>

@@ -1,7 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    #@players = Player.order('name')
-    @players = Player.find(:all, :conditions => 'name != "admin"')
+    @players = Player.find_all_by_display("1")
   end
 
   def show
